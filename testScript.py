@@ -40,7 +40,7 @@ print(robot)
 
 #===========================================<ตรวจคำตอบข้อ 1>====================================================#
 #code here
-from FRA333_HW3_xx_xx import endEffectorJacobianHW3
+from FRA333_HW3_6511_6517 import endEffectorJacobianHW3
 def Check_endEffectorJacobianHW3(q: list[float]) -> np.ndarray:
     J_check = robot.jacob0(q)
     return J_check
@@ -69,7 +69,7 @@ else:
 #==============================================================================================================#
 #===========================================<ตรวจคำตอบข้อ 2>====================================================#
 #code here
-from FRA333_HW3_xx_xx import checkSingularityHW3
+from FRA333_HW3_6511_6517 import checkSingularityHW3
 def Check_checkSingularityHW3(q:list[float])->bool:
     """
     ฟังก์ชันนี้ใช้ตรวจสอบว่าแขนกลอยู่ในสภาวะ Singularity หรือไม่
@@ -102,7 +102,7 @@ else:
 #==============================================================================================================#
 #===========================================<ตรวจคำตอบข้อ 3>====================================================#
 #code here
-from FRA333_HW3_xx_xx import computeEffortHW3
+from FRA333_HW3_6511_6517 import computeEffortHW3
 def Check_computeEffortHW3(q: list[float], w: list[float]) -> np.ndarray:
     # คำนวณ Jacobian Matrix จาก q
     J_check = Check_endEffectorJacobianHW3(q)
