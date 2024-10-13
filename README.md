@@ -10,9 +10,9 @@
   - [Question 2](#Question-2)
   - [Question 3](#Question-3)
 - [Part 2 Check the Answer](#Part-2-Check-the-Answer)
-  - [Question 1](#Question-1)
-  - [Question 2](#Question-2)
-  - [Question 3](#Question-3)
+    - [Question 1](#Question-1)
+    - [Question 2](#Question-2)
+    - [Question 3](#Question-3)
   
 # Part 1 Solve Problems
 ## Question 1
