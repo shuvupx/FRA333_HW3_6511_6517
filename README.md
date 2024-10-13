@@ -1,4 +1,5 @@
 # **Homework 3**
+## Part 1  Solve Problems
 ## Question 1
 
 Jacobain Matrix Form
@@ -19,22 +20,22 @@ Using the Jacobian Matrix Form and
 
 from the HW3_utils file to compute the Jacobian Matrix of RRR robot.
 
-### Function
+**Function**
 
     def endEffectorJacobianHW3(q: list[float]) -> list[float]:
 
-### Parameters
+**Parameters**
 
     q (list of float): A list of joint angles [q1,q2,q3][q1​,q2​,q3​] for the 3-DOF robotic arm (in radians).
 
-### Return
+**Return**
 
     J_e (list of float): A 6x3 Jacobian matrix consisting of:
         Translational Part (J_v): Relating joint velocities to linear velocities of the end effector.
         Rotational Part (J_w): Relating joint velocities to angular velocities of the end effector.
 
 
-### Code
+**Code**
 
     def endEffectorJacobianHW3(q:list[float])->list[float]:
     # Get Forward Kinematics values from FKHW3
@@ -65,3 +66,124 @@ from the HW3_utils file to compute the Jacobian Matrix of RRR robot.
     J_e = np.vstack((J_v, J_w))
     
     return J_e
+
+
+## Question 2
+
+The function computes the determinant of the top three rows of the Jacobian matrix. The condition for singularity can be mathematically expressed as:
+
+**∣∣ det(J∗(q))∣∣ < ϵ**
+
+Where:
+
+    J∗(q) is the reduced Jacobian matrix obtained from the full Jacobian.
+    ϵ is a small threshold value (0.001) to account for numerical inaccuracies.
+
+If the absolute value of the determinant is less than this threshold, the arm is considered to be in a singularity state.
+
+**Function**
+
+    def checkSingularityHW3(q: list[float]) -> bool:
+
+**Parameters**
+
+    q (list of float): A list of joint angles [q1,q2,q3][q1​,q2​,q3​] (in radians) for the 3-DOF robotic arm.
+
+**Returns**
+
+    bool: Returns 1 if the robotic arm is in a singularity state; otherwise, returns 0.
+
+**Code**
+
+    def checkSingularityHW3(q:list[float])->bool:
+    """
+    ฟังก์ชันนี้ใช้ตรวจสอบว่าแขนกลอยู่ในสภาวะ Singularity หรือไม่
+    โดยการตรวจสอบ determinant ของ Jacobian ที่ลดรูปแล้ว
+    """
+    epsilon = 0.001
+    # คำนวณ Jacobian matrix จาก q
+    J = endEffectorJacobianHW3(q)
+
+    # ตัด 3 แถวล่างออก
+    J_reduced = J[:3, :]
+    
+    # คำนวณ determinant ของ Jacobian
+    det_J_reduced = np.linalg.det(J_reduced)
+    
+    # ตรวจสอบเงื่อนไข Singularity
+    if abs(det_J_reduced) < epsilon:
+        return 1  # อยู่ในสภาวะ Singularity
+    else:
+        return 0  # ไม่อยู่ในสภาวะ Singularity
+
+## Question 3
+
+The torques at the joints are calculated using the following equation:
+
+![image-14](https://github.com/user-attachments/assets/3aa6f8e3-a06e-42e3-8d19-b1773121a17c)
+
+Where:
+
+    JT is the transpose of the Jacobian matrix.
+    w is the wrench vector applied at the end effector.
+
+
+**Function**
+
+    def computeEffortHW3(q: list[float], w: list[float]) -> list[float]:
+    # Description and code implementation below
+
+**Parameters**
+
+    q (list of float): A vector representing the joint configuration of the robotic arm (3-dimensional).
+    w (list of float): A vector representing the wrench (forces and moments) applied at the end-effector (6-dimensional). 
+    This includes:
+        w[0],w[1],w[2]: Force components (Fx,Fy,Fz)
+        w[3],w[4],w[5]: Moment components (Mx,My,Mz)
+**Return**
+
+    tau (numpy.ndarray): A vector of torques for each joint (3-dimensional).
+
+
+
+**Code**
+
+    def computeEffortHW3(q:list[float], w:list[float])->list[float]:
+    """
+    คำนวณค่า Effort (Torque) ที่กระทำกับแต่ละข้อต่อของหุ่นยนต์ RRR 
+    เมื่อมีแรงและโมเมนต์มากระทำที่ตำแหน่งปลายมือ
+    
+    Parameters:
+    q : list[float] 
+        เวกเตอร์ของ Joint Configuration (3 มิติ)
+    w : list[float] 
+        เวกเตอร์แรงและโมเมนต์ (6 มิติ) ที่มากระทำกับปลายมือ
+    
+    Returns:
+    tau : np.ndarray 
+        เวกเตอร์ Torque ของแต่ละข้อต่อ (3 มิติ)
+    """
+    # คำนวณ Jacobian Matrix จาก q
+    J = endEffectorJacobianHW3(q)
+    
+    # นำ Transpose ของ Jacobian มาคำนวณ
+    J_transpose = np.transpose(J)
+    
+    # คูณ Jacobian Transpose กับ Wrench (แรง + โมเมนต์)
+    #ใช้เครื่องหมายลบเพื่อแสดงว่า torque ของข้อต่อเป็นแรงปฏิกิริยาที่ต่อต้านกับแรง (wrench) ที่ปลายมือ
+    tau = -np.dot(J_transpose, w)
+    
+    return tau
+
+
+
+
+
+
+
+
+
+
+
+
+    
