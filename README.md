@@ -238,20 +238,7 @@ We fixed it to:
     
 ## Check Question 1
 
-Check whether the Jacobian matrix produced by the user-defined function is consistent with the one obtained from Robotics Toolbox.
-
-**Function**
-
-    Check_endEffectorJacobianHW3(q: list[float]) -> np.ndarray:
-
-**Input**
-
-    The joint configuration is specified using q_input, which represents the angles of each joint in the robotic arm.
-
-**Return**
-
-    returns the Jacobian matrix calculated using the Robotics Toolbox.
-
+To Check whether the Jacobian matrix produced by the user-defined function is consistent with the one obtained from Robotics Toolbox.
 
 **Code**
 
@@ -290,10 +277,101 @@ Check whether the Jacobian matrix produced by the user-defined function is consi
 ![Screenshot from 2024-10-13 16-25-15](https://github.com/user-attachments/assets/6cbfdb8f-f8ab-4e10-95b0-5d6624232daa)
 
 
-
 ## Check Question 2
 
+To Check whether the Singularity State produced by the user-defined function is consistent with the one obtained from Robotics Toolbox.
+
+**Code**
+
+    from FRA333_HW3_6511_6517 import checkSingularityHW3
+    def Check_checkSingularityHW3(q:list[float])->bool:
+        """
+        ฟังก์ชันนี้ใช้ตรวจสอบว่าแขนกลอยู่ในสภาวะ Singularity หรือไม่
+        โดยการตรวจสอบ determinant ของ Jacobian ที่ลดรูปแล้ว
+        """
+        epsilon = 0.001
+        # คำนวณ Jacobian matrix จาก q
+        J_check = Check_endEffectorJacobianHW3(q)
+    
+        # ตัด 3 แถวล่างออก
+        J_check_reduced = J_check[:3, :]
+        
+        # คำนวณ determinant ของ Jacobian
+        det_J_check_reduced = np.linalg.det(J_check_reduced)
+        
+        # ตรวจสอบเงื่อนไข Singularity
+        if abs(det_J_check_reduced) < epsilon:
+            return 1  # อยู่ในสภาวะ Singularity
+        else:
+            return 0  # ไม่อยู่ในสภาวะ Singularity
+    
+    print('\n')
+    print('Check Q2')
+    if (checkSingularityHW3(q_input) != Check_checkSingularityHW3(q_input)):
+        print("checkSingularity Not Correct")
+    
+    else:
+        print("checkSingularity Correct")
+
+**Comparison Process**
+
+    1. The checkSingularityHW3 function and the custom Check_checkSingularityHW3 function are called with the same joint configuration.
+    2. The results from both functions are compared to check for consistency.
+    3. The outcome is printed to indicate whether the singularity check is correct.
+
+**Output**
+
+![Screenshot from 2024-10-13 16-44-45](https://github.com/user-attachments/assets/d949043b-79f6-4cfd-9a83-2ed1d364b926)
+
+
 ## Check Question 3
+
+To verify that the computed torques at each joint of the robotic arm are consistent between the user-defined function and the one obtained from Robotics Toolbox.
+
+**Code**
+
+    from FRA333_HW3_6511_6517 import computeEffortHW3
+    def Check_computeEffortHW3(q: list[float], w: list[float]) -> np.ndarray:
+        # คำนวณ Jacobian Matrix จาก q
+        J_check = Check_endEffectorJacobianHW3(q)
+        
+        # นำ Transpose ของ Jacobian มาคำนวณ
+        J_check_transpose = np.transpose(J_check)
+        
+        # คูณ Jacobian Transpose กับ Wrench (แรง + โมเมนต์)
+        # ใช้เครื่องหมายลบเพื่อแสดงว่า torque ของข้อต่อเป็นแรงปฏิกิริยาที่ต่อต้านกับแรง (wrench) ที่ปลายมือ
+        tau_check = -np.dot(J_check_transpose, w)
+        
+        return tau_check
+    
+    # Get the results from both functions
+    effort1 = computeEffortHW3(q_input, w_input)
+    effort2 = Check_computeEffortHW3(q_input, w_input)
+    
+    # Calculate the acceptable error margin (0.001% of the maximum value in effort1)
+    tolerance = 0.001 / 100  # 0.001%
+    
+    
+    print('\n')
+    print('Check Q3')
+    print("Effort from computeEffortHW3:\n", effort1)
+    print("Effort from Check_computeEffortHW3:\n", effort2)
+    # Check if the efforts are approximately equal within the specified tolerance
+    if not np.allclose(effort1, effort2, atol=tolerance * np.max(np.abs(effort1))):
+        print("Effort Not Correct")
+    else:
+        print("Effort Correct")
+    # Print both efforts for comparison
+
+**Comparison Process**
+  
+    1. The torque is calculated using both the custom computeEffortHW3 function and the manual Check_computeEffortHW3 function.
+    2. An acceptable error margin is defined.
+    3. The np.allclose() function is used to check if the two torque vectors are approximately equal within the defined tolerance.
+   
+**Output**
+
+![Screenshot from 2024-10-13 16-46-02](https://github.com/user-attachments/assets/de3e1e10-ce9d-4653-926b-dfbae4a77085)
 
 
 
