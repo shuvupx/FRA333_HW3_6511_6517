@@ -10,9 +10,9 @@
   - [Question 2](#Question-2)
   - [Question 3](#Question-3)
 - [Part 2 Check the Answer](#Part-2-Check-the-Answer)
-    - [Question 1](#[Question-1](https://github.com/shuvupx/FRA333_HW3_6511_6517/blob/main/README.md#question-1-1))
-    - [Question 2](#Question-2)
-    - [Question 3](#Question-3)
+    - [Question 1](#Check-Question-1)
+    - [Question 2](#Check-Question-2)
+    - [Question 3](#Check-Question-3)
   
 # Part 1 Solve Problems
 ## Question 1
@@ -236,7 +236,7 @@ We fixed it to:
 ![Screenshot from 2024-10-13 16-20-04](https://github.com/user-attachments/assets/520d298b-9c15-4bec-8c7b-98b996e9efe1)
 
     
-## Question 1
+## Check Question 1
 
 Check whether the Jacobian matrix produced by the user-defined function is consistent with the one obtained from Robotics Toolbox.
 
@@ -291,9 +291,9 @@ Check whether the Jacobian matrix produced by the user-defined function is consi
 
 
 
-## Question 2
+## Check Question 2
 
-## Question 3
+## Check Question 3
 
 
 
