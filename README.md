@@ -192,7 +192,104 @@ Where:
 
 
 # Part 2 Check the Answer
+
+Input Values:
+
+    - q_input is a list representing the joint angles of the robotic arm in radians. In this case, all joints are initialized to 0.
+  
+    - w_input is a list representing the wrench applied at the end effector, defined as six components: force and moment (fx, fy, fz, mx, my, mz).
+
+We fixed it to:
+
+    q_input = [0,0,0]
+    w_input = [0,10,0,5,5,0]
+
+
+**Define Robot with MDH Parameters**
+
+![image](https://github.com/user-attachments/assets/d0aef5bb-b10f-4f96-92c2-95a075ebbe05)
+
+**Code**
+
+    # Define the robot using Modified Denavit-Hartenberg parameters
+    robot = rtb.DHRobot(
+        [
+            rtb.RevoluteMDH(d=0.0892, offset=pi),        # Joint 1
+            rtb.RevoluteMDH(alpha=pi/2, offset=0),       # Joint 2
+            rtb.RevoluteMDH(a=-0.425, offset=0),         # Joint 3
+            
+        ],
+        tool = SE3([
+            [np.cos(-pi/2), 0, np.sin(-pi/2), -0.47443],
+            [0, 1, 0, -0.093],
+            [-np.sin(-pi/2), 0, np.cos(-pi/2), 0.109],
+            [0, 0, 0, 1]  # Homogeneous coordinate
+        ]),
+        name="RRR_Robot"
+    )
+    
+    # Print the robot model to verify
+    print(robot)
+
+**Output**
+
+![Screenshot from 2024-10-13 16-20-04](https://github.com/user-attachments/assets/520d298b-9c15-4bec-8c7b-98b996e9efe1)
+
+    
 ## Question 1
+
+Check whether the Jacobian matrix produced by the user-defined function is consistent with the one obtained from Robotics Toolbox.
+
+**Function**
+
+    Check_endEffectorJacobianHW3(q: list[float]) -> np.ndarray:
+
+**Input**
+
+    The joint configuration is specified using q_input, which represents the angles of each joint in the robotic arm.
+
+**Return**
+
+    returns the Jacobian matrix calculated using the Robotics Toolbox.
+
+
+**Code**
+
+    from FRA333_HW3_6511_6517 import endEffectorJacobianHW3
+    def Check_endEffectorJacobianHW3(q: list[float]) -> np.ndarray:
+        J_check = robot.jacob0(q)
+        return J_check
+    
+    # Get the results from both functions
+    jacobian1 = endEffectorJacobianHW3(q_input)
+    jacobian2 = Check_endEffectorJacobianHW3(q_input)
+    
+    # Calculate the acceptable error margin (0.001% of the maximum value in jacobian1)
+    tolerance = 0.001 / 100  # 0.001%
+    
+    print('\n')
+    print('Check Q1')
+    # Print both Jacobians for comparison
+    print("Jacobian from endEffectorJacobianHW3:\n", jacobian1)
+    print("Jacobian from Check_endEffectorJacobianHW3:\n", jacobian2)
+    # Check if the Jacobians are approximately equal within the specified tolerance
+    if not np.allclose(jacobian1, jacobian2, atol=tolerance * np.max(np.abs(jacobian1))):
+        print("Jacobian Matrix Not Correct")
+    else:
+        print("Jacobian Matrix Correct")
+        
+**Comparison Process**
+
+    1. The Jacobian matrix is calculated using both the custom function and the Robotics Toolbox.
+    2. An acceptable error margin is defined (0.001% of the maximum value in jacobian1).
+    3. Both Jacobians are printed for visual comparison.
+    4. The np.allclose() function is used to check if the two matrices are approximately equal within the defined tolerance.
+    
+**Output**
+
+![Screenshot from 2024-10-13 16-25-15](https://github.com/user-attachments/assets/6cbfdb8f-f8ab-4e10-95b0-5d6624232daa)
+
+
 
 ## Question 2
 
