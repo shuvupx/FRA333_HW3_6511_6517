@@ -194,10 +194,10 @@ Where:
 # Part 2 Check the Answer
 
 Input Values:
-
-    - q_input is a list representing the joint angles of the robotic arm in radians. In this case, all joints are initialized to 0.
   
-    - w_input is a list representing the wrench applied at the end effector, defined as six components: force and moment (fx, fy, fz, mx, my, mz).
+  - q_input is a list representing the joint angles of the robotic arm in radians. In this case, all joints are initialized to 0.
+    
+  - w_input is a list representing the wrench applied at the end effector, defined as six components: force and moment (fx, fy, fz, mx, my, mz).
 
 We fixed it to:
 
@@ -267,10 +267,10 @@ To Check whether the Jacobian matrix produced by the user-defined function is co
         
 **Comparison Process**
 
-    1. The Jacobian matrix is calculated using both the custom function and the Robotics Toolbox.
-    2. An acceptable error margin is defined (0.001% of the maximum value in jacobian1).
-    3. Both Jacobians are printed for visual comparison.
-    4. The np.allclose() function is used to check if the two matrices are approximately equal within the defined tolerance.
+  - The Jacobian matrix is calculated using both the custom function and the Robotics Toolbox.
+  - An acceptable error margin is defined (0.001% of the maximum value in jacobian1).
+  - Both Jacobians are printed for visual comparison.
+  - The np.allclose() function is used to check if the two matrices are approximately equal within the defined tolerance.
     
 **Output**
 
@@ -315,9 +315,9 @@ To Check whether the Singularity State produced by the user-defined function is 
 
 **Comparison Process**
 
-    1. The checkSingularityHW3 function and the custom Check_checkSingularityHW3 function are called with the same joint configuration.
-    2. The results from both functions are compared to check for consistency.
-    3. The outcome is printed to indicate whether the singularity check is correct.
+  - The checkSingularityHW3 function and the custom Check_checkSingularityHW3 function are called with the same joint configuration.
+  - The results from both functions are compared to check for consistency.
+  - The outcome is printed to indicate whether the singularity check is correct.
 
 **Output**
 
@@ -365,9 +365,9 @@ To verify that the computed torques at each joint of the robotic arm are consist
 
 **Comparison Process**
   
-    1. The torque is calculated using both the custom computeEffortHW3 function and the manual Check_computeEffortHW3 function.
-    2. An acceptable error margin is defined.
-    3. The np.allclose() function is used to check if the two torque vectors are approximately equal within the defined tolerance.
+  - The torque is calculated using both the custom computeEffortHW3 function and the manual Check_computeEffortHW3 function.
+  - An acceptable error margin is defined.
+  - The np.allclose() function is used to check if the two torque vectors are approximately equal within the defined tolerance.
    
 **Output**
 
