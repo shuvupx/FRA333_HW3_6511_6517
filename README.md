@@ -5,10 +5,10 @@
 ![image](https://github.com/user-attachments/assets/ae1933ae-f974-44ea-8029-00ab40b34c9a)
 
 # Table of Contents
-- [Part 1 Solve Problems ](#section-1)
-  - [Question 1](#subsection-11)
-  - [Question 2](#subsection-12)
-  - [Question 3](#subsection-13)
+- [Part 1 Solve Problems ](#Part 1 Solve Problems)
+  - [Question 1](#Question-1)
+  - [Question 2](#Question-2)
+  - [Question 3](#Question-3)
 - [Part 2 Check the Answer](#section-2)
      - [Question 1](#subsection-21)
   - [Question 2](#subsection-22)
