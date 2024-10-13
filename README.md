@@ -2,7 +2,7 @@
 
 นักศึกษาสามารถประยุกต์ความรู้ในเรื่องของการหาจลศาสตร์เชิงอนุพันธ์เพื่อใช้ในการควบคุมหุ่นยนต์ RRR ที่มีลักษณะโครงสร้างดังรูปที่ 1 โดยใช้สมการ Forward Kinematics ที่ทางผู้ผลิตให้มาในฟังก์ชั่น FKHW3 ใน HW3_utils.py
 
-![image](https://github.com/user-attachments/assets/ae1933ae-f974-44ea-8029-00ab40b34c9a)
+![image](HW3%20Pic/376023450-d0aef5bb-b10f-4f96-92c2-95a075ebbe05.png)
 
 # Table of Contents
 - [Part 1 Solve Problems ](#Part-1-Solve-Problems)
@@ -19,12 +19,11 @@
 
 Jacobain Matrix Form
 
-![image](https://github.com/user-attachments/assets/83bba325-68cc-40a3-ae9f-de213c856c43)
+![image](HW3%20Pic/376018402-83bba325-68cc-40a3-ae9f-de213c856c43.png)
 
 Jacobain Matrix of RRR Robot Form
 
-![image](https://github.com/user-attachments/assets/6070514e-029c-4462-9e31-18ede06b3843)
-
+![image](HW3%20Pic/376017253-6070514e-029c-4462-9e31-18ede06b3843.png)
 
 Using the Jacobian Matrix Form and 
 
@@ -48,7 +47,6 @@ from the HW3_utils file to compute the Jacobian Matrix of RRR robot.
     J_e (list of float): A 6x3 Jacobian matrix consisting of:
         Translational Part (J_v): Relating joint velocities to linear velocities of the end effector.
         Rotational Part (J_w): Relating joint velocities to angular velocities of the end effector.
-
 
 **Code**
 
@@ -135,7 +133,8 @@ If the absolute value of the determinant is less than this threshold, the arm is
 
 The torques at the joints are calculated using the following equation:
 
-![image-14](https://github.com/user-attachments/assets/3aa6f8e3-a06e-42e3-8d19-b1773121a17c)
+![image](HW3%20Pic/376021714-3aa6f8e3-a06e-42e3-8d19-b1773121a17c.png)
+
 
 Where:
 
@@ -207,7 +206,7 @@ We fixed it to:
 
 **Define Robot with MDH Parameters**
 
-![image](https://github.com/user-attachments/assets/d0aef5bb-b10f-4f96-92c2-95a075ebbe05)
+![image](HW3%20Pic/376023450-d0aef5bb-b10f-4f96-92c2-95a075ebbe05.png)
 
 **Code**
 
@@ -233,8 +232,7 @@ We fixed it to:
 
 **Output**
 
-![Screenshot from 2024-10-13 16-20-04](https://github.com/user-attachments/assets/520d298b-9c15-4bec-8c7b-98b996e9efe1)
-
+![Screenshot](HW3%20Pic/Screenshot%20from%202024-10-13%2016-20-04.png)
     
 ## Check Question 1
 
@@ -274,8 +272,7 @@ To Check whether the Jacobian matrix produced by the user-defined function is co
     
 **Output**
 
-![Screenshot from 2024-10-13 16-25-15](https://github.com/user-attachments/assets/6cbfdb8f-f8ab-4e10-95b0-5d6624232daa)
-
+![Screenshot from 2024-10-13 16-25-15](HW3%20Pic/Screenshot%20from%202024-10-13%2016-25-15.png)
 
 ## Check Question 2
 
@@ -321,8 +318,7 @@ To Check whether the Singularity State produced by the user-defined function is 
 
 **Output**
 
-![Screenshot from 2024-10-13 16-44-45](https://github.com/user-attachments/assets/d949043b-79f6-4cfd-9a83-2ed1d364b926)
-
+![Screenshot from 2024-10-13 16-44-45](HW3%20Pic/Screenshot%20from%202024-10-13%2016-44-45.png)
 
 ## Check Question 3
 
@@ -371,10 +367,7 @@ To verify that the computed torques at each joint of the robotic arm are consist
    
 **Output**
 
-![Screenshot from 2024-10-13 16-46-02](https://github.com/user-attachments/assets/de3e1e10-ce9d-4653-926b-dfbae4a77085)
-
-
-
+![Screenshot from 2024-10-13 16-46-02](HW3%20Pic/Screenshot%20from%202024-10-13%2016-46-02.png)
 
 
 
