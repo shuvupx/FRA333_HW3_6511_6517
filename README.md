@@ -1,4 +1,9 @@
 # **Homework 3**
+
+นักศึกษาสามารถประยุกต์ความรู้ในเรื่องของการหาจลศาสตร์เชิงอนุพันธ์เพื่อใช้ในการควบคุมหุ่นยนต์ RRR ที่มีลักษณะโครงสร้างดังรูปที่ 1 โดยใช้สมการ Forward Kinematics ที่ทางผู้ผลิตให้มาในฟังก์ชั่น FKHW3 ใน HW3_utils.py
+
+![image](https://github.com/user-attachments/assets/ae1933ae-f974-44ea-8029-00ab40b34c9a)
+
 ## Part 1  Solve Problems
 ## Question 1
 
