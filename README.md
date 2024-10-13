@@ -10,7 +10,7 @@
   - [Question 2](#Question-2)
   - [Question 3](#Question-3)
 - [Part 2 Check the Answer](#Part-2-Check-the-Answer)
-    - [Question 1](#Question-1)
+    - [Question 1](#[Question-1](https://github.com/shuvupx/FRA333_HW3_6511_6517/blob/main/README.md#question-1-1))
     - [Question 2](#Question-2)
     - [Question 3](#Question-3)
   
